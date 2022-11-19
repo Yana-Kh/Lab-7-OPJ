@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import functools
-
 
 if __name__ == '__main__':
     # Ввести список одной строкой.
@@ -18,17 +16,20 @@ if __name__ == '__main__':
         if value < a_min:
             a_min = value
             i_min = ind
+    print(f"Количество нулевых элементов: {n}")
 
     # Нахождение суммы элементов после минимального
     a1 = a[i_min + 1:]
-    summ = sum(i for i in a1)
-    print(f"Сумма элементов после минимального : {summ}")
+    s = sum(i for i in a1)
+    print(f"Сумма элементов после минимального : {s}")
 
     # Сортировка
-    def abs_func(x1, x2):
-        if abs(float(x1)) > abs(float(x2)):
-            return 1
-        else:
-            return -1
-    a.sort(key=functools.cmp_to_key(abs_func))
+    i = 0
+    while i < len(a):
+        j = 0
+        while j < len(a) - 1:
+            if abs(a[j]) > abs(a[j + 1]):
+                a[j], a[j+1] = a[j+1], a[j]
+            j += 1
+        i += 1
     print(f"Отсортированный список: {a}")
